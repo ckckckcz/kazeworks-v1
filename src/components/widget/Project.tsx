@@ -15,6 +15,7 @@ import Tandur from "@/app/project/tandur.png";
 import Pulse from "@/app/project/pulse.png";
 import KAI from "@/app/project/kai.png";
 import {SquareArrowOutUpRight} from "lucide-react"
+import Image from "next/image";
 
 type Project = {
   id: string;
@@ -164,11 +165,11 @@ function ProjectCard({ item }: { item: Project }) {
     <Card className="h-full overflow-hidden border-border bg-card/60 max-w-7xl px-4 py-4">
       <div className="flex h-full flex-col">
         <div className="relative">
-          <img src={item.image || "/placeholder.svg"} alt={`${item.title} preview`} className="w-full aspect-[16/9] object-cover rounded-lg border border-border" />
+          <Image src={item.image || "/placeholder.svg"} alt={`${item.title} preview`} className="w-full aspect-[16/9] object-cover rounded-lg border border-border" />
           {!!item.techStack?.length && (
             <div className="absolute bottom-2 left-2 flex items-center gap-2">
               {item.techStack.slice(0, 6).map((s) => (
-                <img key={s.name} src={s.icon} alt={s.name} title={s.name} className="size-8 rounded bg-white p-1 shadow ring-1 ring-black/10" />
+                <Image key={s.name} src={s.icon} alt={s.name} title={s.name} className="size-8 rounded bg-white p-1 shadow ring-1 ring-black/10" />
               ))}
             </div>
           )}
