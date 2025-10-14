@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/widget/Navbar";
 import logo from "./logo.svg";
+import { Bricolage_Grotesque } from "next/font/google";
 
 type NavLink = {
   label: string;
@@ -24,6 +25,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
 });
 
@@ -66,18 +72,9 @@ const navItems: NavItem[] = [
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`} 
-        style={{ fontFamily: "'Bricolage Grotesque', var(--font-geist-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" }}
+        className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} antialiased`}
+        style={{ fontFamily: "var(--font-bricolage), var(--font-geist-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" }}
       >
         <Navbar
           logo={logo}

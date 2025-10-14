@@ -135,7 +135,7 @@ function ChartTooltipContent<
       color?: string
       dataKey?: string | number
       type?: "none" | undefined
-      payload?: any
+      payload?: Record<string, unknown>
     }>
   }) {
   const { config } = useChart()
@@ -196,7 +196,13 @@ function ChartTooltipContent<
           .map((item, index) => {
             const key = `${nameKey || item.name || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
-            const indicatorColor = color || (item as any).payload?.fill || item.color
+
+            const payloadFill =
+              item.payload && typeof (item.payload as { fill?: unknown }).fill === "string"
+                ? (item.payload as { fill?: string }).fill
+                : undefined
+
+            const indicatorColor = color || payloadFill || item.color
 
             return (
               <div
@@ -207,7 +213,7 @@ function ChartTooltipContent<
                 )}
               >
                 {formatter && item?.value !== undefined && item.name ? (
-                  formatter(item.value as TValue, item.name as TName, item, index, (item as any).payload)
+                  formatter(item.value as TValue, item.name as TName, item as any, index, payload)
                 ) : (
                   <>
                     {itemConfig?.icon ? (

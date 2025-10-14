@@ -6,8 +6,6 @@ import Background from "@/app/background.png"
 import Banner from "@/components/widget/components/Banner"
 
 export default function Hero() {
-  const chips = ["startup", "agencies", "existing company"]
-
   return (
     <section className={cn("relative hero-bg min-h-screen bg-center bg-no-repeat bg-cover overflow-hidden")} style={{ backgroundImage: `url(${Background.src})` }}>
       <div className="container mx-auto px-6 pt-20 pb-4 max-w-7xl lg:mt-26 mt-10 lg:text-center md:py-28 lg:py-32">
