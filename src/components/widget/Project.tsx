@@ -15,13 +15,13 @@ import Tandur from "@/app/project/tandur.png";
 import Pulse from "@/app/project/pulse.png";
 import KAI from "@/app/project/kai.png";
 import {SquareArrowOutUpRight} from "lucide-react"
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 type Project = {
   id: string;
   title: string;
   desc: string;
-  image: string;
+  image: StaticImageData | string; // was: string
   liveDemo?: string;
   techStack?: { name: string; icon: string }[];
 };
@@ -31,7 +31,7 @@ const projects: Project[] = [
     id: "SkillQuest",
     title: "Skill Quest",
     desc: "SkillQuest employs artificial intelligence to power personalized learning. The intelligence to customize learning materials to the unique requirements of each user.  The system monitors the progress of each user and provides relevant content. This is consistent with their learning objectives and skill level.",
-    image: SkillQuest.src,
+    image: SkillQuest, // was: SkillQuest.src
     liveDemo: "https://github.com/ckckckcz/SkillQuest",
     techStack: [
       { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
@@ -44,7 +44,7 @@ const projects: Project[] = [
     id: "Grow+",
     title: "Grow +",
     desc: "Website application Stunting Nutrition Planner (SNP) yang dirancang sebagai solusi inovatif untuk memutus mata rantai stunting di wilayah non-Jawa melalui pendekatan personalisasi gizi berbasis kondisi ekonomi dan geografis pengguna.",
-    image: Grow.src,
+    image: Grow, // was: Grow.src
     liveDemo: "https://github.com/ckckckcz/growplus",
     techStack: [
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
@@ -58,7 +58,7 @@ const projects: Project[] = [
     id: "PulseProtect",
     title: "Pulse Protect",
     desc: "Platform inisiatif untuk membantu masyarakat Indonesia memastikan keaslian obat melalui verifikasi cepat berbasis data BPOM. Kami mengajak publik berkolaborasi mencegah peredaran obat ilegal, sekaligus menghadirkan pengalaman yang sederhana, akurat, dan dapat dipercaya.",
-    image: Pulse.src,
+    image: Pulse, // was: Pulse.src
     liveDemo: "https://pulseprotect.vercel.app/",
     techStack: [
       { name: "Next", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
@@ -73,7 +73,7 @@ const projects: Project[] = [
     id: "KAI Connect",
     title: "KAI Connect",
     desc: "platform berbasis web yang dirancang untuk mendukung digitalisasi layanan Kereta Api Indonesia (KAI) dengan menghadirkan pengalaman perjalanan yang lebih efisien, modern, dan ramah pengguna. Sistem ini memadukan teknologi OCR, Artificial Intelligence, dan visualisasi peta.",
-    image: KAI.src,
+    image: KAI, // was: KAI.src
     liveDemo: "https://github.com/ckckckcz/compshere-ahlanwahsahlan",
     techStack: [
       { name: "Next", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
@@ -89,7 +89,7 @@ const projects: Project[] = [
     id: "Tandur",
     title: "Tandur",
     desc: "Sistem berbasis web yang dirancang untuk mendukung pengelolaan data lahan pertanian secara efisien. Sistem ini memungkinkan pengguna untuk mencatat, memantau, dan menganalisis data lahan di Kabupaten Malang dengan memanfaatkan teknologi GIS.",
-    image: Tandur.src,
+    image: Tandur, // was: Tandur.src
     liveDemo: "https://tandur.vercel.app/",
     techStack: [
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
@@ -103,7 +103,7 @@ const projects: Project[] = [
     id: "Warisan Kita",
     title: "Warisan Kita",
     desc: "Platform inovatif yang dirancang untuk mendigitalkan, melestarikan, dan mempromosikan seni serta budaya tradisional, dengan fokus kuat pada upaya menjaga warisan budaya di tengah arus globalisasi yang kian berkembang.",
-    image: WarisanKita.src,
+    image: WarisanKita, // was: WarisanKita.src
     liveDemo: "https://warisankita.vercel.app/",
     techStack: [
       { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
@@ -117,7 +117,7 @@ const projects: Project[] = [
     id: "SoraWeb",
     title: "Sora Web",
     desc: "Soraweb adalah tim layanan yang menyediakan jasa pengembangan website dan desain digital. Kami tidak hanya sekadar membuat situs web, tapi berperan sebagai mitra strategis yang membantu klien membangun identitas online yang kuat dan berkualitas tinggi.",
-    image: Sora.src,
+    image: Sora, // was: Sora.src
     liveDemo: "https://soraofficial.vercel.app/",
     techStack: [
       { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
@@ -130,7 +130,7 @@ const projects: Project[] = [
     id: "Cendekia UM",
     title: "Cendekia -  Universitas Negeri Malang",
     desc: "Tujuan dari pembuatan website Cendekia ini adalah agar memudahkan mahasiswa untuk mengakses materi di mana saja dan kapan saja tanpa terbatas oleh waktu, membuat proses belajar lebih menarik karena adanya ilustrasi dan video pembelajaran, dan meningkatkan kemampuan kolaboratif mahasiswa.",
-    image: Cendekia.src,
+    image: Cendekia, // was: Cendekia.src
     liveDemo: "https://cendekiaum.vercel.app/",
     techStack: [
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
@@ -143,7 +143,7 @@ const projects: Project[] = [
     id: "Katalis JTI",
     title: "Katalis JTI",
     desc: "pengembangan website yang bertujuan untuk mendokumentasikan, mempublikasikan, dan mengelola data prestasi mahasiswa di kampus. Website ini diharapkan menjadi pusat informasi terintegrasi yang memudahkan mahasiswa, dosen, dan pihak kampus dalam melacak pencapaian akademis, dan kompetisi.",
-    image: Katalis.src,
+    image: Katalis, // was: Katalis.src
     liveDemo: "https://github.com/ckckckcz/Katalis-JTI",
     techStack: [
       { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
@@ -164,12 +164,28 @@ function ProjectCard({ item }: { item: Project }) {
   return (
     <Card className="h-full overflow-hidden border-border bg-card/60 max-w-7xl px-4 py-4">
       <div className="flex h-full flex-col">
-        <div className="relative">
-          <Image src={item.image || "/placeholder.svg"} alt={`${item.title} preview`} className="w-full aspect-[16/9] object-cover rounded-lg border border-border" />
+        <div className="relative aspect-[16/9] rounded-lg border border-border overflow-hidden">
+          <Image
+            src={item.image || "/placeholder.svg"}
+            alt={`${item.title} preview`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
           {!!item.techStack?.length && (
             <div className="absolute bottom-2 left-2 flex items-center gap-2">
               {item.techStack.slice(0, 6).map((s) => (
-                <Image key={s.name} src={s.icon} alt={s.name} title={s.name} className="size-8 rounded bg-white p-1 shadow ring-1 ring-black/10" />
+                <img
+                  key={s.name}
+                  src={s.icon}
+                  alt={s.name}
+                  title={s.name}
+                  width={32}
+                  height={32}
+                  loading="lazy"
+                  decoding="async"
+                  className="rounded bg-white p-1 shadow ring-1 ring-black/10"
+                />
               ))}
             </div>
           )}

@@ -15,7 +15,7 @@ export default function AnimatedCrossBanner() {
         <div className="relative w-full lg:h-[90px] h-14">
           {/* Background stripe */}
           <div
-            className="absolute inset-0 bg-gray-100 border-2 border-gray-100 transform -rotate-[1deg] origin-center shadow-xl"
+            className="absolute inset-0 bg-gray-100 border-2 border-gray-300 transform -rotate-[1deg] origin-center"
             style={{
               width: "150%",
               left: "-25%",

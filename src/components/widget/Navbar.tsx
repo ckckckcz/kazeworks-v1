@@ -3,6 +3,7 @@ import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
 import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 
 type CardNavLink = {
   label: string;
@@ -18,15 +19,13 @@ export type CardNavItem = {
 };
 
 export interface CardNavProps {
-  logo: string;
+  logo: string | StaticImageData;
   logoAlt?: string;
   items: CardNavItem[];
   className?: string;
   ease?: string;
   baseColor?: string;
   menuColor?: string;
-  buttonBgColor?: string;
-  buttonTextColor?: string;
 }
 
 const CardNav: React.FC<CardNavProps> = ({
@@ -36,9 +35,7 @@ const CardNav: React.FC<CardNavProps> = ({
   className = '',
   ease = 'power3.out',
   baseColor = '#fff',
-  menuColor,
-  buttonBgColor,
-  buttonTextColor
+  menuColor
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -100,7 +97,7 @@ const CardNav: React.FC<CardNavProps> = ({
     tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 }, '-=0.1');
 
     return tl;
-  }, [ease, items]);
+  }, [ease]);
 
   useLayoutEffect(() => {
     const tl = createTimeline();
@@ -187,18 +184,27 @@ const CardNav: React.FC<CardNavProps> = ({
             />
           </div>
 
-          <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
-            <Image src={logo} alt={logoAlt} className="logo h-[28px]" />
+          <div className=" flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
+            <Image
+              src={logo}
+              alt={logoAlt}
+              width={32}
+              height={32}
+              className="logo h-8 w-8"
+              priority
+            />
           </div>
 
-          <button
-            type="button"
-            className="card-nav-cta-button hidden md:inline-flex items-center justify-center border-0 rounded-[calc(0.75rem-0.2rem)] px-4 h-full font-medium cursor-pointer transition-colors duration-300"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-            aria-label="Get Started"
+          <a
+            href="https://linkedin.com/in/riovaldorahman"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-nav-cta-button group hidden md:inline-flex items-center justify-center border-0 px-4 h-full font-medium cursor-pointer bg-black text-white rounded-[calc(0.75rem-0.2rem)] transition-[border-radius,background-color,box-shadow,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[border-radius,transform] hover:bg-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+            aria-label="Let's Connect di LinkedIn"
+            role="button"
           >
-            Get Started
-          </button>
+            Let&apos;s Connect 👀
+          </a>
         </div>
 
         <div
