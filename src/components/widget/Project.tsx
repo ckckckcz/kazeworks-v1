@@ -21,7 +21,7 @@ type Project = {
   id: string;
   title: string;
   desc: string;
-  image: StaticImageData | string; // was: string
+  image: StaticImageData | string;
   liveDemo?: string;
   techStack?: { name: string; icon: string }[];
 };
@@ -31,7 +31,7 @@ const projects: Project[] = [
     id: "SkillQuest",
     title: "Skill Quest",
     desc: "SkillQuest employs artificial intelligence to power personalized learning. The intelligence to customize learning materials to the unique requirements of each user.  The system monitors the progress of each user and provides relevant content. This is consistent with their learning objectives and skill level.",
-    image: SkillQuest, // was: SkillQuest.src
+    image: SkillQuest,
     liveDemo: "https://github.com/ckckckcz/SkillQuest",
     techStack: [
       { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
@@ -44,7 +44,7 @@ const projects: Project[] = [
     id: "Grow+",
     title: "Grow +",
     desc: "Website application Stunting Nutrition Planner (SNP) yang dirancang sebagai solusi inovatif untuk memutus mata rantai stunting di wilayah non-Jawa melalui pendekatan personalisasi gizi berbasis kondisi ekonomi dan geografis pengguna.",
-    image: Grow, // was: Grow.src
+    image: Grow,
     liveDemo: "https://github.com/ckckckcz/growplus",
     techStack: [
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
@@ -188,7 +188,6 @@ function ProjectCard({ item }: { item: Project }) {
             </div>
           )}
         </div>
-        {/* Image + tech stack overlay */}
 
         {/* Content */}
         <div className="mt-4 flex flex-1 flex-col gap-3">
@@ -209,7 +208,6 @@ function ProjectCard({ item }: { item: Project }) {
 }
 
 export default function ProjectsSection() {
-  // progress bar using Carousel API
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [progress, setProgress] = useState(0);
   const autoplayRef = useRef<number | null>(null);

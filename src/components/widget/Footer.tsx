@@ -4,7 +4,7 @@ import FooterBg from "@/app/Footer.png"
 const Footer: React.FC = () => {
   return (
     <>
-      <footer className="bg-gray-100">
+      <footer className="bg-gray-50 border-t-2 border-gray-200">
         <div className="mx-auto w-full max-w-7xl p-4 py-6 lg:py-8">
           <div className="lg:flex justify-between lg:mt-14">
             <h1 className="text-black lg:text-6xl md:text-5xl text-4xl font-bold lg:mb-0 mb-5">
