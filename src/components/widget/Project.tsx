@@ -175,15 +175,13 @@ function ProjectCard({ item }: { item: Project }) {
           {!!item.techStack?.length && (
             <div className="absolute bottom-2 left-2 flex items-center gap-2">
               {item.techStack.slice(0, 6).map((s) => (
-                <img
+                <Image
                   key={s.name}
                   src={s.icon}
                   alt={s.name}
                   title={s.name}
                   width={32}
                   height={32}
-                  loading="lazy"
-                  decoding="async"
                   className="rounded bg-white p-1 shadow ring-1 ring-black/10"
                 />
               ))}

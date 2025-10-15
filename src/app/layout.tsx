@@ -5,7 +5,6 @@ import Navbar from "@/components/widget/Navbar";
 import Footer from "@/components/widget/Footer";
 import Logo from "./Logo.png";
 import { Bricolage_Grotesque } from "next/font/google";
-import { Import } from "lucide-react";
 
 type NavLink = {
   label: string;
