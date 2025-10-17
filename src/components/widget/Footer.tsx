@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
                 type="button"
                 className="lg:px-10 lg:py-4 px-4 py-2 cursor-pointer text-base font-bold text-center text-black bg-[#32fb00] hover:bg-[#57eb32] rounded-full"
               >
-                Let&apos;s Talk
+                Connect on LinkedIn 🥳
               </button>
             </a>
           </div>
