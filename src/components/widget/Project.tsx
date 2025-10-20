@@ -14,6 +14,7 @@ import Grow from "@/app/project/grow.png";
 import Tandur from "@/app/project/tandur.png";
 import Pulse from "@/app/project/pulse.png";
 import KAI from "@/app/project/kai.png";
+import AIDA from "@/app/project/aida.png"
 import Thumbnail_1 from "@/app/project/data/thumbnail1.png"
 import Thumbnail_2 from "@/app/project/data/thumbnail2.png"
 import { SquareArrowOutUpRight, Eye } from "lucide-react";
@@ -32,6 +33,22 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    id: "AIDA",
+    title: "AIDA (Advertisement Data Analytics) ",
+    desc: "Smart billboard berbasis AI adalah papan iklan digital yang mendeteksi dan menghitung kendaraan lewat menggunakan kamera dan AI, lalu menampilkan data tayangan secara real-time di dashboard web untuk memantau efektivitas iklan.",
+    image: AIDA,
+    liveDemo: "https://dev.dashboard.theaida.id/",
+    category: "web",
+    techStack: [
+      { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Vite", icon: "https://img.icons8.com/?size=100&id=dJjTWMogzFzg&format=png&color=000000" },
+      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+    ],
+  },
   {
     id: "SkillQuest",
     title: "Skill Quest",
@@ -219,7 +236,7 @@ function ProjectCard({ item }: { item: Project }) {
   const link = item.liveDemo || "#";
   const isGithub = link.includes("github.com");
   const isVercel = link.includes("vercel.app") || link.includes("vercel.com");
-  const buttonLabel = isGithub ? "Source Code" : isVercel ? "Live Demo" : "Visit";
+  const buttonLabel = isGithub ? "Source Code" : isVercel ? "Live Demo" : "Live Demo";
 
   const handleDetailClick = () => {
     if (item.detailId) {
