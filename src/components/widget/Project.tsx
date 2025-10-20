@@ -14,8 +14,9 @@ import Grow from "@/app/project/grow.png";
 import Tandur from "@/app/project/tandur.png";
 import Pulse from "@/app/project/pulse.png";
 import KAI from "@/app/project/kai.png";
-import { SquareArrowOutUpRight } from "lucide-react";
+import { SquareArrowOutUpRight, Eye } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
+import { useRouter } from "next/navigation";
 
 type Project = {
   id: string;
@@ -25,6 +26,7 @@ type Project = {
   liveDemo?: string;
   techStack?: { name: string; icon: string }[];
   category: "web" | "data";
+  detailId?: string; // Add this for data projects
 };
 
 const projects: Project[] = [
@@ -163,13 +165,44 @@ const projects: Project[] = [
       { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
     ],
   },
+  // Data Science Projects
+  {
+    id: "superstore-analysis",
+    title: "Analisis Penjualan & Keuntungan Superstore",
+    desc: "Analisis mendalam terhadap data penjualan retail menggunakan Python dan Excel untuk memahami performa bisnis, tren penjualan, dan optimasi keuntungan berdasarkan kategori produk dan wilayah.",
+    image: "/project/data/thumbnail1.png",
+    category: "data",
+    detailId: "superstore-analysis",
+    techStack: [
+      { 
+        name: "Python", 
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+      },
+      { 
+        name: "Ipynb", 
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" 
+      },
+      { 
+        name: "Excel", 
+        icon: "https://img.icons8.com/?size=100&id=117561&format=png&color=000000" 
+      },
+    ]
+
+  },
 ];
 
 function ProjectCard({ item }: { item: Project }) {
+  const router = useRouter();
   const link = item.liveDemo || "#";
   const isGithub = link.includes("github.com");
   const isVercel = link.includes("vercel.app") || link.includes("vercel.com");
   const buttonLabel = isGithub ? "Source Code" : isVercel ? "Live Demo" : "Visit";
+
+  const handleDetailClick = () => {
+    if (item.detailId) {
+      router.push(`/detail?id=${item.detailId}`);
+    }
+  };
 
   return (
     <Card className="h-full overflow-hidden border-border bg-card/60 max-w-7xl px-4 py-4">
@@ -193,6 +226,10 @@ function ProjectCard({ item }: { item: Project }) {
                   width={32}
                   height={32}
                   className="rounded bg-white p-1 shadow ring-1 ring-black/10"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/devicon/devicon-original.svg';
+                  }}
                 />
               ))}
             </div>
@@ -203,12 +240,22 @@ function ProjectCard({ item }: { item: Project }) {
           <h3 className="text-pretty text-lg font-semibold leading-tight md:text-xl">{item.title}</h3>
           <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
 
-          <div className="mt-auto">
-            <a href={link} target="_blank" rel="noopener noreferrer" aria-label={buttonLabel}>
-              <Button size="lg" className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer">
-                {buttonLabel} <SquareArrowOutUpRight />
+          <div className="mt-auto flex gap-2">
+            {item.category === "data" && item.detailId ? (
+              <Button 
+                size="lg" 
+                className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer flex-1"
+                onClick={handleDetailClick}
+              >
+                Detail <Eye size={16} />
               </Button>
-            </a>
+            ) : (
+              <a href={link} target="_blank" rel="noopener noreferrer" aria-label={buttonLabel} className="flex-1">
+                <Button size="lg" className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer w-full">
+                  {buttonLabel} <SquareArrowOutUpRight />
+                </Button>
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -307,7 +354,7 @@ export default function ProjectsSection() {
               activeTab === "data" ? "text-black" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            Data Scientist
+            Data Analyst
             {activeTab === "data" && (
               <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
             )}

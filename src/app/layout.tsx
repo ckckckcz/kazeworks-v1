@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/widget/Navbar";
 import Footer from "@/components/widget/Footer";
-import Logo from "./Logo.png";
+import Logo from "./assets/Logo.png";
 import { Bricolage_Grotesque } from "next/font/google";
 
 type NavLink = {

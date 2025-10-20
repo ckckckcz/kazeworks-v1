@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import FooterBg from "@/app/Footer.png"
+import FooterBg from "@/app/assets/Footer.png";
 
 const Footer: React.FC = () => {
   return (
@@ -23,7 +22,6 @@ const Footer: React.FC = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 lg:pr-[400px]">
               <a href="https://flowbite.com/" className="flex items-center mb-4">
-                {/* <Image src={Logo} className="h-8 me-3" alt="FlowBite Logo" width={32} height={32} /> Adjust width/height as needed */}
                 <span className="self-center text-2xl font-extrabold whitespace-nowrap text-black">
                   Kaze<span className="text-[#32fb00]">.</span>
                 </span>

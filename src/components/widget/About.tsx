@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import rio from "@/app/rio.png";
+import rio from "@/app/assets/rio.png";
 import Image from "next/image";
 import Link from "next/link";
 

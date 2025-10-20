@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 import { X, Download } from "lucide-react";
-import Background from "@/app/background.png";
+import Background from "@/app/assets/background.png";
 import Banner from "@/components/widget/components/Banner";
 
 export default function Hero() {

@@ -12,14 +12,34 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'midtrans.com',
+        hostname: 'cdn.brandfetch.io',
       },
       {
         protocol: 'https',
-        hostname: 'cdn.brandfetch.io',
+        hostname: 'img.icons8.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'seaborn.pydata.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.plot.ly',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.worldvectorlogo.com',
+      }
     ],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
