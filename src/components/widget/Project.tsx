@@ -164,7 +164,6 @@ const projects: Project[] = [
       { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
     ],
   },
-  // Data Science Projects
   {
     id: "superstore-analysis",
     title: "Analisis Penjualan & Keuntungan Superstore",
