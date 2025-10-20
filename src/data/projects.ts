@@ -3,6 +3,9 @@ import TrenPenjualan from "@/app/project/data/trenPenjualan.png";
 import TotalPenjualanRegion from "@/app/project/data/totalPenjualanRegion.png";
 import DiskonKeuntungan from "@/app/project/data/diskonKeuntungan.png";
 import TotalKeuntungan from "@/app/project/data/totalKeuntungan.png";
+import DistribusiUmur from "@/app/project/data/distribusiUmur.png"
+import hubunganUmur from "@/app/project/data/hubunganUmur.png"
+import rataRataPengeluaran from "@/app/project/data/rataRataPengeluaran.png"
 
 export const projects: ProjectData[] = [
   {
@@ -57,5 +60,49 @@ Selain itu, hasil visualisasi juga dirancang dalam bentuk dashboard interaktif a
     insights: ["Penjualan meningkat signifikan setiap tahun (2014–2017).", "Produk kategori Technology memberikan profit tertinggi.", "Diskon besar berdampak negatif pada keuntungan."],
     kaggleLink: "https://www.kaggle.com/datasets/vivek468/superstore-dataset-final",
     githubLink: "https://github.com/ckckckcz/template-process-data-analsyt",
+  },
+  {
+    id: "customer-spending-analysis",
+    title: "Analisis Pola Pengeluaran Pelanggan",
+    subtitle: "Studi Kasus Data Analyst #2",
+    tools: ["Python", "Google Colab", "Pandas", "Matplotlib", "Seaborn"],
+    date: "Oktober 2025",
+    summary: `Proyek ini bertujuan untuk menganalisis perilaku pelanggan melalui data pengeluaran berdasarkan faktor demografis seperti usia dan total belanja. Dataset yang digunakan merupakan data publik dari Kaggle berisi informasi pelanggan beserta detail transaksi mereka. Analisis dilakukan untuk memahami tren konsumsi, korelasi antarvariabel, serta pola pengeluaran yang dapat membantu perencanaan strategi pemasaran.
+
+Tahapan awal dimulai dengan proses *data cleaning* menggunakan Python (pandas) di Google Colab. Langkah-langkah yang dilakukan meliputi penghapusan nilai kosong, normalisasi format data, serta pembuatan kolom baru seperti \`Total_Spent\` untuk menghitung total pengeluaran setiap pelanggan berdasarkan kategori produk.
+
+Selanjutnya dilakukan *exploratory data analysis (EDA)* untuk memahami struktur dan distribusi data. Beberapa teknik visualisasi digunakan untuk menampilkan hubungan antara variabel demografis dan perilaku belanja pelanggan. Misalnya, analisis distribusi umur pelanggan dilakukan menggunakan *histogram*, sedangkan hubungan antara umur dan total pengeluaran divisualisasikan menggunakan *scatter plot*.
+
+Dari hasil analisis diperoleh beberapa temuan penting:
+1. Mayoritas pelanggan berada pada rentang usia produktif (25–35 tahun).
+2. Pelanggan berusia 30–40 tahun cenderung memiliki total pengeluaran lebih tinggi dibanding kelompok usia lainnya.
+3. Tidak terdapat korelasi yang kuat antara umur dan total pengeluaran, namun tren menunjukkan peningkatan moderat pada usia matang.
+4. Pola pengeluaran pelanggan relatif konsisten di sebagian besar kategori produk.
+
+Hasil analisis ini menggambarkan bagaimana teknik eksplorasi data sederhana dapat digunakan untuk memahami perilaku konsumen. Visualisasi membantu mengidentifikasi kelompok pelanggan potensial yang dapat menjadi target utama dalam strategi pemasaran berbasis data (data-driven marketing). 
+Selain itu, seluruh proses analisis dapat dijalankan sepenuhnya di Google Colab tanpa memerlukan setup lokal yang kompleks.`,
+    images: [
+      {
+        src: DistribusiUmur.src,
+        alt: "Distribusi Umur Pelanggan",
+        width: 600,
+        height: 400,
+      },
+      {
+        src: hubunganUmur.src,
+        alt: "Hubungan Umur dengan Total Pengeluaran",
+        width: 600,
+        height: 400,
+      },
+      {
+        src: rataRataPengeluaran.src,
+        alt: "Total Pengeluaran per Kategori Produk",
+        width: 600,
+        height: 400,
+      },
+    ],
+    insights: ["Pelanggan usia 25–35 tahun mendominasi data pembelian.", "Kelompok usia matang (30–40 tahun) memiliki rata-rata pengeluaran tertinggi.", "Tidak terdapat korelasi kuat antara umur dan pengeluaran total."],
+    kaggleLink: "https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis",
+    githubLink: "https://github.com/riovaldo/customer-spending-analysis",
   },
 ];

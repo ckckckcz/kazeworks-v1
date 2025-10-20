@@ -14,6 +14,8 @@ import Grow from "@/app/project/grow.png";
 import Tandur from "@/app/project/tandur.png";
 import Pulse from "@/app/project/pulse.png";
 import KAI from "@/app/project/kai.png";
+import Thumbnail_1 from "@/app/project/data/thumbnail1.png"
+import Thumbnail_2 from "@/app/project/data/thumbnail2.png"
 import { SquareArrowOutUpRight, Eye } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
@@ -41,7 +43,7 @@ const projects: Project[] = [
       { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
       { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
       { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { name: "Midtrans", icon: "https://cdn.brandfetch.io/id6lAOk8E4/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B" },
+      { name: "Midtrans", icon: "https://avatars.githubusercontent.com/u/17001512?v=4" },
     ],
   },
   {
@@ -72,7 +74,7 @@ const projects: Project[] = [
       { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
       { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
       { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Midtrans", icon: "https://cdn.simpleicons.org/midtrans/02D9F7" },
+      { name: "Midtrans", icon: "https://avatars.githubusercontent.com/u/17001512?v=4" },
     ],
   },
   {
@@ -89,7 +91,7 @@ const projects: Project[] = [
       { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
       { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
       { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-      { name: "Midtrans", icon: "https://cdn.simpleicons.org/midtrans/02D9F7" },
+      { name: "Midtrans", icon: "https://avatars.githubusercontent.com/u/17001512?v=4" },
     ],
   },
   {
@@ -119,7 +121,6 @@ const projects: Project[] = [
       { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
       { name: "Javascript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/000000" },
     ],
   },
   {
@@ -133,7 +134,6 @@ const projects: Project[] = [
       { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
       { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
       { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/000000" },
     ],
   },
   {
@@ -147,7 +147,6 @@ const projects: Project[] = [
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
       { name: "Javascript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/000000" },
     ],
   },
   {
@@ -170,7 +169,7 @@ const projects: Project[] = [
     id: "superstore-analysis",
     title: "Analisis Penjualan & Keuntungan Superstore",
     desc: "Analisis mendalam terhadap data penjualan retail menggunakan Python dan Excel untuk memahami performa bisnis, tren penjualan, dan optimasi keuntungan berdasarkan kategori produk dan wilayah.",
-    image: "/project/data/thumbnail1.png",
+    image: Thumbnail_1,
     category: "data",
     detailId: "superstore-analysis",
     techStack: [
@@ -179,15 +178,40 @@ const projects: Project[] = [
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
       },
       { 
-        name: "Ipynb", 
+        name: "Jupyter", 
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" 
       },
       { 
         name: "Excel", 
-        icon: "https://img.icons8.com/?size=100&id=117561&format=png&color=000000" 
+        icon: "https://cdn.simpleicons.org/microsoftexcel/217346" 
       },
-    ]
-
+    ],
+  },
+  {
+    id: "customer-spending-analysis",
+    title: "Analisis Pola Pengeluaran Pelanggan",
+    desc: "Analisis perilaku pelanggan melalui data pengeluaran berdasarkan faktor demografis seperti usia dan total belanja menggunakan Python dan Google Colab untuk memahami tren konsumsi dan pola pengeluaran.",
+    image: Thumbnail_2,
+    category: "data",
+    detailId: "customer-spending-analysis",
+    techStack: [
+      { 
+        name: "Python", 
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+      },
+      { 
+        name: "Excel", 
+        icon: "https://cdn.simpleicons.org/microsoftexcel/217346" 
+      },
+      { 
+        name: "Jupyter", 
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" 
+      },
+      { 
+        name: "Pandas", 
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" 
+      },
+    ],
   },
 ];
 

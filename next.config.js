@@ -37,7 +37,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.worldvectorlogo.com',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
     ],
   },
 };
