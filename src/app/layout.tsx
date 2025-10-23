@@ -45,8 +45,8 @@ const navItems: NavItem[] = [
     bgColor: "#0D0716",
     textColor: "#fff",
     links: [
-      { label: "MBGo", href: "/about/MBGo", ariaLabel: "About Company" },
-      { label: "Fitur", href: "/about/fitur", ariaLabel: "About Features  " },
+      // { label: "MBGo", href: "/about/MBGo", ariaLabel: "About Company" },
+      // { label: "Fitur", href: "/about/fitur", ariaLabel: "About Features  " },
     ],
   } as const,
   {
@@ -54,8 +54,8 @@ const navItems: NavItem[] = [
     bgColor: "#170D27",
     textColor: "#fff",
     links: [
-      { label: "Featured", href: "/projects/featured", ariaLabel: "Featured Projects" },
-      { label: "Case Studies", href: "/projects/case-studies", ariaLabel: "Project Case Studies" },
+      // { label: "Featured", href: "/projects/featured", ariaLabel: "Featured Projects" },
+      // { label: "Case Studies", href: "/projects/case-studies", ariaLabel: "Project Case Studies" },
     ],
   } as const,
   {
@@ -63,9 +63,9 @@ const navItems: NavItem[] = [
     bgColor: "#271E37",
     textColor: "#fff",
     links: [
-      { label: "Email", href: "/contact/email", ariaLabel: "Email us" },
-      { label: "Twitter", href: "/contact/twitter", ariaLabel: "Twitter" },
-      { label: "LinkedIn", href: "/contact/linkedin", ariaLabel: "LinkedIn" },
+      // { label: "Email", href: "/contact/email", ariaLabel: "Email us" },
+      // { label: "Twitter", href: "/contact/twitter", ariaLabel: "Twitter" },
+      // { label: "LinkedIn", href: "/contact/linkedin", ariaLabel: "LinkedIn" },
     ],
   } as const,
 ];
