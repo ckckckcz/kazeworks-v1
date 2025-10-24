@@ -133,7 +133,7 @@ export default function TeamSection() {
           </div>
         </div>
 
-        <div className="flex-1 max-w-md lg:mt-0 mt-10">
+        <div className="flex-1 lg:max-w-md max-w-full lg:mt-0 mt-10">
           <div className="relative w-full overflow-hidden">
             <div
               className={`flex gap-4 ${enableTransition ? "transition-transform duration-500 ease-in-out" : ""}`}
@@ -144,7 +144,7 @@ export default function TeamSection() {
                 <div
                   key={idx}
                   ref={idx === 1 ? slideRef : undefined}
-                  className="relative rounded-3xl overflow-hidden shadow-lg shrink-0 basis-[85%] sm:basis-[78%] bg-center bg-cover"
+                  className="relative rounded-3xl overflow-hidden shadow-lg shrink-0 basis-[85%] sm:basis-[75%] bg-center bg-cover"
                   style={{ backgroundImage: `url(${award.bgImage})` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
