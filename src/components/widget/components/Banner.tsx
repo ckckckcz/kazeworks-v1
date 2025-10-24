@@ -39,10 +39,10 @@ export default function AnimatedCrossBanner() {
           {/* Text container */}
           <div className="absolute inset-0 flex items-center overflow-hidden transform rotate-[2deg]">
             <div className="flex animate-scroll-left-continuous">
-              <span className="text-white font-bold lg:text-3xl text-2xl whitespace-nowrap">
+              <span className="text-black font-bold lg:text-3xl text-2xl whitespace-nowrap">
                 {fullText}
               </span>
-              <span className="text-white font-bold lg:text-3xl text-2xl whitespace-nowrap">
+              <span className="text-black font-bold lg:text-3xl text-2xl whitespace-nowrap">
                 {fullText}
               </span>
             </div>

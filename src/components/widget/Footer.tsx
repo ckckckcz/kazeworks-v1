@@ -1,4 +1,6 @@
 import FooterBg from "@/app/assets/Footer.png";
+import {ArrowUpRight} from "lucide-react";
+import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
@@ -6,17 +8,17 @@ const Footer: React.FC = () => {
       <footer className="bg-gray-50 border-t-2 border-gray-200">
         <div className="mx-auto w-full max-w-7xl p-4 py-6 lg:py-8">
           <div className="lg:flex justify-between lg:mt-14">
-            <h1 className="text-black lg:text-6xl md:text-5xl text-4xl font-bold lg:mb-0 mb-5">
-              Let&apos;s <span className="text-[#32fb00]">Connect</span> ᯤ
-            </h1>
-            <a href="https://linkedin.com/in/riovaldorahman" target="_blank" rel="noopener noreferrer">
-              <button
-                type="button"
-                className="lg:px-10 lg:py-4 px-4 py-2 cursor-pointer text-base font-bold text-center text-black bg-[#32fb00] hover:bg-[#57eb32] rounded-full"
+            <h1 className="text-black lg:text-6xl md:text-5xl text-4xl flex items-center font-bold lg:mb-0 mb-5">
+              <Link
+                href="https://linkedin.com/in/riovaldorahman"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex hover:underline items-center gap-2"
               >
-                Connect on LinkedIn 🥳
-              </button>
-            </a>
+                <span>Let&apos;s Connect</span>
+                <ArrowUpRight className="w-[1em] h-[1em]" />
+              </Link>
+            </h1>
           </div>
           <hr className="my-6 sm:mx-auto border-gray-900 border opacity-15 lg:my-8" />
           <div className="md:flex md:justify-between">

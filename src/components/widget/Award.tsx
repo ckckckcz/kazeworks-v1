@@ -33,7 +33,7 @@ const awards = [
     bgImage: Bebelac.src,
   },
   {
-    title: "2nd Runner Up of AI Innovation Challenge Competition 2024 at Universitas Indonesia",
+    title: "2nd Runner Up of AI Innovation Challenge 2024 at Universitas Indonesia",
     issuer: "Compfest",
     date: "Okt 2024",
     related: "Politeknik Negeri Malang",
@@ -42,7 +42,7 @@ const awards = [
     bgImage: Compfest1.src,
   },
   {
-    title: "Audience Favourite of AI Innovation Challenge Competition 2024 at Universitas Indonesia",
+    title: "Audience Favourite of AI Innovation Challenge 2024 at Universitas Indonesia",
     issuer: "Compfest",
     date: "Okt 2024",
     related: "Politeknik Negeri Malang",
@@ -66,6 +66,11 @@ export default function TeamSection() {
   const slideRef = useRef<HTMLDivElement | null>(null);
   const [slideSize, setSlideSize] = useState(0);
   const [enableTransition, setEnableTransition] = useState(true);
+
+  // Drag state
+  const [dragX, setDragX] = useState(0);
+  const startXRef = useRef<number | null>(null);
+  const draggingRef = useRef(false);
 
   // Tambahkan slides dengan clone di awal & akhir
   const slides = [awards[awards.length - 1], ...awards, awards[0]];
@@ -107,6 +112,34 @@ export default function TeamSection() {
     }
   };
 
+  // Handlers for drag/swipe
+  const startDrag = (x: number) => {
+    draggingRef.current = true;
+    startXRef.current = x;
+    setEnableTransition(false);
+  };
+
+  const moveDrag = (x: number) => {
+    if (!draggingRef.current || startXRef.current === null) return;
+    const delta = x - startXRef.current;
+    setDragX(delta);
+  };
+
+  const endDrag = () => {
+    if (!draggingRef.current) return;
+    draggingRef.current = false;
+
+    const threshold = Math.max(50, slideSize * 0.2);
+    setEnableTransition(true);
+
+    if (Math.abs(dragX) > threshold) {
+      if (dragX < 0) nextSlide();
+      else prevSlide();
+    }
+    setDragX(0);
+    startXRef.current = null;
+  };
+
   return (
     <section className="items-center justify-between gap-10 bg-[#32fb00]">
       <div className="px-6 py-16 md:py-10 max-w-7xl mx-auto flex flex-col md:flex-row ">
@@ -114,7 +147,7 @@ export default function TeamSection() {
           <div className="mb-4 flex items-start justify-between gap-6">
             <div className="max-w-2xl">
               <h2 id="projects-title" className="text-pretty text-4xl font-semibold text-black leading-tight md:text-5xl">
-                Semua berawal dari rasa penasaran 🤔
+                Semua berawal dari rasa penasaran
               </h2>
             </div>
           </div>
@@ -136,9 +169,19 @@ export default function TeamSection() {
         <div className="flex-1 lg:max-w-md max-w-full lg:mt-0 mt-10">
           <div className="relative w-full overflow-hidden">
             <div
-              className={`flex gap-4 ${enableTransition ? "transition-transform duration-500 ease-in-out" : ""}`}
-              style={{ transform: `translateX(-${currentIndex * slideSize}px)` }}
+              className={`flex gap-4 select-none cursor-grab active:cursor-grabbing ${enableTransition ? "transition-transform duration-500 ease-in-out" : ""}`}
+              style={{ transform: `translateX(-${currentIndex * slideSize - dragX}px)` }}
               onTransitionEnd={handleTransitionEnd}
+              onMouseDown={(e) => startDrag(e.clientX)}
+              onMouseMove={(e) => moveDrag(e.clientX)}
+              onMouseUp={endDrag}
+              onMouseLeave={endDrag}
+              onTouchStart={(e) => startDrag(e.touches[0].clientX)}
+              onTouchMove={(e) => {
+                moveDrag(e.touches[0].clientX);
+                e.preventDefault();
+              }}
+              onTouchEnd={endDrag}
             >
               {slides.map((award, idx) => (
                 <div

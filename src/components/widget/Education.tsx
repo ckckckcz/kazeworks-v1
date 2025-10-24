@@ -7,7 +7,7 @@ const educationData = [
   {
     logo: Polinema.src,
     schoolName: "Politeknik Negeri Malang",
-    major: "Teknologi Informasi, Teknik Informatika",
+    major: "Teknologi Informasi, D4 Teknik Informatika",
     startYear: 2023,
     endYear: 2027,
   },
