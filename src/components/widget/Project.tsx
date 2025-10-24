@@ -364,7 +364,7 @@ export default function ProjectsSection() {
 
   return (
     <section aria-labelledby="projects-title" className="bg-background text-foreground overflow-x-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-10">
         <div className="mb-8 flex items-start justify-between gap-6">
           <div className="max-w-2xl">
             <h2 id="projects-title" className="text-pretty text-3xl font-semibold leading-tight md:text-5xl">

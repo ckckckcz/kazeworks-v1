@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import rio from "@/app/assets/rio.png";
+import rio from "@/app/assets/rio.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
 export function AboutSection() {
   return (
     <section aria-labelledby="about-title" className="bg-background text-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 justify-between">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-10 justify-between">
         <div className="grid items-center gap-10 md:grid-cols-2">
           {/* Left: Copy */}
           <div className="space-y-6">
@@ -32,8 +32,17 @@ export function AboutSection() {
 
           {/* Right: Image */}
           <div className="relative flex items-center justify-center">
-            <div className="overflow-hidden rounded-xl">
-              <Image src={rio} alt="Our team collaborating in a modern workspace" className="w-96 h-auto object-cover mx-auto" />
+            <div
+              className="relative overflow-hidden rounded-full border-4 border-border w-full max-w-xs sm:max-w-sm md:max-w-md"
+              style={{ aspectRatio: "1 / 1" }}
+            >
+              <Image
+                src={rio}
+                alt="Riovaldo Alfiyan Fahmi Rahman"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 28rem, (min-width: 768px) 24rem, 18rem"
+              />
             </div>
           </div>
         </div>
