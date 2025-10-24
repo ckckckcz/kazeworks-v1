@@ -21,9 +21,9 @@ export function AboutSection() {
             </h2>
 
             <p className="max-w-prose text-gray-600 leading-relaxed">
-              Hi! I’m Riovaldo Alfiyan Fahmi Rahman, a student at Malang State Polytechnic, majoring in Computer Engineering. <br /> <br /> I have a strong interest in Front-End Web Development and am dedicated to creating smooth and interactive web
-              experiences. I specialize in working with technologies such as React, TypeScript, JavaScript, Astro, and Tailwind to build clean, responsive, and user-friendly interfaces. Currently living in the beautiful country of
-              Indonesia, I am actively pursuing my passion for technology.
+              Hi! I’m Riovaldo Alfiyan Fahmi Rahman, a student at Malang State Polytechnic, majoring in Computer Engineering. <br /> <br /> I’m a Full-Stack Developer passionate about building modern, interactive, and efficient web applications from frontend to backend. Experienced in technologies such as React, Next.js, TypeScript, Astro, Tailwind CSS, Laravel, and Node.js, I focus on creating scalable and user-friendly digital solutions.
+
+I’m also exploring the field of Data Analysis, with a growing interest in data visualization, statistical modeling, and insight-driven applications to create smarter, data-informed web experiences.
             </p>
 
             <Link href="https://github.com/ckckckcz"><Button className="rounded-tl-full rounded-bl-full cursor-pointer bg-white hover:bg-gray-200 border-border border text-black px-7 py-6">Github</Button></Link>
