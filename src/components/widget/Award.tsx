@@ -2,20 +2,23 @@
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import Sandbox from "@/app/assets/awards/sandbox.jpg"
-import Compfest from "@/app/assets/awards/compfest.png"
-import Yoters from "@/app/assets/awards/yoters.png"
-import Compsphere from "@/app/assets/awards/compsphere.png"
-import Compfest1 from "@/app/assets/awards/team/mechaminds-1.jpg"
-import Compfest2 from "@/app/assets/awards/team/mechaminds-2.jpg"
-import Mechaminds from "@/app/assets/awards/team/mechaminds-3.jpg"
-import Bebelac from "@/app/assets/awards/team/bebelac.jpg"
-import Ahlanwahsahlan from "@/app/assets/awards/team/compshere.jpg"
+import Sandbox from "@/app/assets/awards/sandbox.jpg";
+import Compfest from "@/app/assets/awards/compfest.png";
+import Olivia1 from "@/app/assets/awards/olivia.png";
+import Yoters from "@/app/assets/awards/yoters.png";
+import Compsphere from "@/app/assets/awards/compsphere.png";
+import Compfest1 from "@/app/assets/awards/team/mechaminds-1.jpg";
+import Compfest2 from "@/app/assets/awards/team/mechaminds-2.jpg";
+import Mechaminds from "@/app/assets/awards/team/mechaminds-3.jpg";
+import Olivia2 from "@/app/assets/awards/team/mechaminds-4.jpg";
+import Bebelac from "@/app/assets/awards/team/bebelac.jpg";
+import Ahlanwahsahlan from "@/app/assets/awards/team/compshere.jpg";
 import Image from "next/image";
 
 const awards = [
   {
-    title: "Finalist Hacksphere Hackathon Compsphere 2025 at President University",
+    title:
+      "Finalist Hacksphere Hackathon Compsphere 2025 at President University",
     issuer: "Compsphere",
     date: "Okt 2025",
     related: "Politeknik Negeri Malang",
@@ -24,7 +27,17 @@ const awards = [
     bgImage: Ahlanwahsahlan.src,
   },
   {
-    title: "Favorite Challenge Award of Hackathon The Sandbox by IEEE Institut Teknologi Bandung",
+    title: "Participant Web Technology Olimpiade Vokasi Indonesia ",
+    issuer: "Olivia",
+    date: "Juni 2025",
+    related: "Politeknik Negeri Malang",
+    team: "Mechaminds",
+    logo: Olivia1.src,
+    bgImage: Olivia2.src,
+  },
+  {
+    title:
+      "Favorite Challenge Award of Hackathon The Sandbox by IEEE Institut Teknologi Bandung",
     issuer: "The Sandbox by IEEE ITB",
     date: "Apr 2025",
     related: "Politeknik Negeri Malang",
@@ -33,7 +46,8 @@ const awards = [
     bgImage: Bebelac.src,
   },
   {
-    title: "2nd Runner Up of AI Innovation Challenge 2024 at Universitas Indonesia",
+    title:
+      "2nd Runner Up of AI Innovation Challenge 2024 at Universitas Indonesia",
     issuer: "Compfest",
     date: "Okt 2024",
     related: "Politeknik Negeri Malang",
@@ -42,7 +56,8 @@ const awards = [
     bgImage: Compfest1.src,
   },
   {
-    title: "Audience Favourite of AI Innovation Challenge 2024 at Universitas Indonesia",
+    title:
+      "Audience Favourite of AI Innovation Challenge 2024 at Universitas Indonesia",
     issuer: "Compfest",
     date: "Okt 2024",
     related: "Politeknik Negeri Malang",
@@ -51,7 +66,8 @@ const awards = [
     bgImage: Compfest2.src,
   },
   {
-    title: "Finalist of UI/UX Design Competition 2024 at YOTers Malang, Surabaya, Jakarta",
+    title:
+      "Finalist of UI/UX Design Competition 2024 at YOTers Malang, Surabaya, Jakarta",
     issuer: "YOTers",
     date: "Mar 2024",
     related: "Politeknik Negeri Malang",
@@ -146,21 +162,32 @@ export default function TeamSection() {
         <div className="flex-1 space-y-5">
           <div className="mb-4 flex items-start justify-between gap-6">
             <div className="max-w-2xl">
-              <h2 id="projects-title" className="text-pretty text-4xl font-semibold text-black leading-tight md:text-5xl">
+              <h2
+                id="projects-title"
+                className="text-pretty text-4xl font-semibold text-black leading-tight md:text-5xl"
+              >
                 Semua berawal dari rasa penasaran
               </h2>
             </div>
           </div>
 
           <p className="text-black/60 leading-relaxed max-w-md text-lg">
-            Berawal dari keinginan untuk memahami lebih dalam, setiap proses yang dijalani membentuk kemampuan dan karakter. Penghargaan ini menjadi bukti nyata dari komitmen untuk terus bertumbuh.
+            Berawal dari keinginan untuk memahami lebih dalam, setiap proses
+            yang dijalani membentuk kemampuan dan karakter. Penghargaan ini
+            menjadi bukti nyata dari komitmen untuk terus bertumbuh.
           </p>
 
           <div className="flex gap-4 pt-5">
-            <button onClick={prevSlide} className="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-border hover:bg-gray-200 transition">
+            <button
+              onClick={prevSlide}
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-border hover:bg-gray-200 transition"
+            >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <button onClick={nextSlide} className="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-border hover:bg-gray-200 transition">
+            <button
+              onClick={nextSlide}
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-border hover:bg-gray-200 transition"
+            >
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
@@ -170,7 +197,9 @@ export default function TeamSection() {
           <div className="relative w-full overflow-hidden">
             <div
               className={`flex gap-4 select-none cursor-grab active:cursor-grabbing ${enableTransition ? "transition-transform duration-500 ease-in-out" : ""}`}
-              style={{ transform: `translateX(-${currentIndex * slideSize - dragX}px)` }}
+              style={{
+                transform: `translateX(-${currentIndex * slideSize - dragX}px)`,
+              }}
               onTransitionEnd={handleTransitionEnd}
               onMouseDown={(e) => startDrag(e.clientX)}
               onMouseMove={(e) => moveDrag(e.clientX)}
