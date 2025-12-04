@@ -3,7 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import SkillQuest from "@/app/project/skillquest.png";
 import Cendekia from "@/app/project/cendekia.png";
@@ -14,10 +21,13 @@ import Grow from "@/app/project/grow.png";
 import Tandur from "@/app/project/tandur.png";
 import Pulse from "@/app/project/pulse.png";
 import KAI from "@/app/project/kai.png";
-import AIDA from "@/app/project/aida.png"
-import Thumbnail_1 from "@/app/project/data/thumbnail1.png"
-import Thumbnail_2 from "@/app/project/data/thumbnail2.png"
-import { SquareArrowOutUpRight, Eye } from "lucide-react";
+import AIDA from "@/app/project/aida.png";
+import Mbgo from "@/app/project/mbgo.png";
+import Pilar from "@/app/project/pilar.png";
+import PilarMobile from "@/app/project/pilar-mobile.png";
+import Thumbnail_1 from "@/app/project/data/thumbnail1.png";
+import Thumbnail_2 from "@/app/project/data/thumbnail2.png";
+import { SquareArrowOutUpRight, Eye, Download } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -28,8 +38,10 @@ type Project = {
   image: StaticImageData | string;
   liveDemo?: string;
   techStack?: { name: string; icon: string }[];
-  category: "web" | "data";
-  detailId?: string; // Add this for data projects
+  category: "web" | "data" | "mobile";
+  detailId?: string;
+  downloadUrl?: string;
+  sourceCodeUrl?: string;
 };
 
 const projects: Project[] = [
@@ -41,12 +53,30 @@ const projects: Project[] = [
     liveDemo: "https://dev.dashboard.theaida.id/",
     category: "web",
     techStack: [
-      { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Vite", icon: "https://img.icons8.com/?size=100&id=dJjTWMogzFzg&format=png&color=000000" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+      {
+        name: "Express",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Vite",
+        icon: "https://img.icons8.com/?size=100&id=dJjTWMogzFzg&format=png&color=000000",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Mysql",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
     ],
   },
   {
@@ -57,10 +87,116 @@ const projects: Project[] = [
     liveDemo: "https://github.com/ckckckcz/SkillQuest",
     category: "web",
     techStack: [
-      { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { name: "Midtrans", icon: "https://avatars.githubusercontent.com/u/17001512?v=4" },
+      {
+        name: "Laravel",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Mysql",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
+      {
+        name: "Midtrans",
+        icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
+      },
+    ],
+  },
+  {
+    id: "Pilar Mobile - Flutter",
+    title: "Pilar App",
+    desc: "PILAR memanfaatkan model pembelajaran mesin berpresisi tinggi untuk mendeteksi serta mengklasifikasikan jenis sampah secara otomatis. Pengguna hanya perlu mengarahkan kamera, dan sistem akan memproses citra tersebut secara real-time untuk menentukan kategori yang tepat.",
+    image: PilarMobile,
+    liveDemo: "https://github.com/ckckckcz/trash-detection",
+    sourceCodeUrl: "https://github.com/ckckckcz/trash-detection",
+    category: "mobile",
+    techStack: [
+      {
+        name: "Flutter",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+      {
+        name: "Dart",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
+      {
+        name: "FastAPI",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+    ],
+  },
+  {
+    id: "Pilar Mobile - React Native",
+    title: "Pilar Mobile",
+    desc: "PILAR memanfaatkan model pembelajaran mesin berpresisi tinggi untuk mendeteksi serta mengklasifikasikan jenis sampah secara otomatis. Pengguna hanya perlu mengarahkan kamera, dan sistem akan memproses citra tersebut secara real-time untuk menentukan kategori yang tepat.",
+    image: PilarMobile,
+    liveDemo: "https://github.com/ckckckcz/PBL-Mobile",
+    sourceCodeUrl: "https://github.com/ckckckcz/PBL-Mobile",
+    category: "mobile",
+    techStack: [
+      {
+        name: "React Native",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
+      {
+        name: "FastAPI",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+    ],
+  },
+  {
+    id: "Pilar",
+    title: "Pilar",
+    desc: "PILAR memanfaatkan model pembelajaran mesin berpresisi tinggi untuk mendeteksi serta mengklasifikasikan jenis sampah secara otomatis. Pengguna hanya perlu mengarahkan kamera, dan sistem akan memproses citra tersebut secara real-time untuk menentukan kategori yang tepat",
+    image: Pilar,
+    liveDemo: "https://pilars.vercel.app",
+    category: "web",
+    techStack: [
+      {
+        name: "NextJS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
+  },
+  {
+    id: "Mbgo",
+    title: "Mbgo",
+    desc: "Program MBGo(Makan Bergizi Go!) merupakan solusi digital terintegrasi yang sangat mendesak untuk diimplementasikan guna menyelamatkan pelaksanaan program Makan Bergizi Gratis(MBG).Urgensi solusi ini didorong oleh fakta kegagalan sistemik MBG saat ini..",
+    image: Mbgo,
+    liveDemo: "https://mbgo.vercel.app/",
+    category: "web",
+    techStack: [
+      {
+        name: "NextJS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
     ],
   },
   {
@@ -71,11 +207,26 @@ const projects: Project[] = [
     liveDemo: "https://github.com/ckckckcz/growplus",
     category: "web",
     techStack: [
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Laravel",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Mysql",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
     ],
   },
   {
@@ -86,12 +237,30 @@ const projects: Project[] = [
     liveDemo: "https://pulseprotect.vercel.app/",
     category: "web",
     techStack: [
-      { name: "Next", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
-      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Midtrans", icon: "https://avatars.githubusercontent.com/u/17001512?v=4" },
+      {
+        name: "Next",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      },
+      {
+        name: "Midtrans",
+        icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
+      },
     ],
   },
   {
@@ -102,13 +271,34 @@ const projects: Project[] = [
     liveDemo: "https://github.com/ckckckcz/compshere-ahlanwahsahlan",
     category: "web",
     techStack: [
-      { name: "Next", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
-      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-      { name: "Midtrans", icon: "https://avatars.githubusercontent.com/u/17001512?v=4" },
+      {
+        name: "Next",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      },
+      {
+        name: "Python",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "Midtrans",
+        icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
+      },
     ],
   },
   {
@@ -119,11 +309,26 @@ const projects: Project[] = [
     liveDemo: "https://tandur.vercel.app/",
     category: "web",
     techStack: [
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Astro",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Python",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
     ],
   },
   {
@@ -134,10 +339,22 @@ const projects: Project[] = [
     liveDemo: "https://warisankita.vercel.app/",
     category: "web",
     techStack: [
-      { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Javascript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      {
+        name: "Astro",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Javascript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
     ],
   },
   {
@@ -148,9 +365,18 @@ const projects: Project[] = [
     liveDemo: "https://soraofficial.vercel.app/",
     category: "web",
     techStack: [
-      { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
-      { name: "Typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      {
+        name: "Astro",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
     ],
   },
   {
@@ -161,9 +387,18 @@ const projects: Project[] = [
     liveDemo: "https://cendekiaum.vercel.app/",
     category: "web",
     techStack: [
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Javascript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Javascript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
     ],
   },
   {
@@ -174,11 +409,26 @@ const projects: Project[] = [
     liveDemo: "https://github.com/ckckckcz/Katalis-JTI",
     category: "web",
     techStack: [
-      { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-      { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-      { name: "Javascript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "TSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" },
-      { name: "Mysql", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+      {
+        name: "PHP",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+      },
+      {
+        name: "CSS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      },
+      {
+        name: "Javascript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "TSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+      },
+      {
+        name: "Mysql",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
     ],
   },
   {
@@ -189,17 +439,17 @@ const projects: Project[] = [
     category: "data",
     detailId: "superstore-analysis",
     techStack: [
-      { 
-        name: "Python", 
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+      {
+        name: "Python",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
-      { 
-        name: "Jupyter", 
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" 
+      {
+        name: "Jupyter",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
       },
-      { 
-        name: "Excel", 
-        icon: "https://cdn.simpleicons.org/microsoftexcel/217346" 
+      {
+        name: "Excel",
+        icon: "https://cdn.simpleicons.org/microsoftexcel/217346",
       },
     ],
   },
@@ -211,21 +461,21 @@ const projects: Project[] = [
     category: "data",
     detailId: "customer-spending-analysis",
     techStack: [
-      { 
-        name: "Python", 
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+      {
+        name: "Python",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
-      { 
-        name: "Excel", 
-        icon: "https://cdn.simpleicons.org/microsoftexcel/217346" 
+      {
+        name: "Excel",
+        icon: "https://cdn.simpleicons.org/microsoftexcel/217346",
       },
-      { 
-        name: "Jupyter", 
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" 
+      {
+        name: "Jupyter",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
       },
-      { 
-        name: "Pandas", 
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" 
+      {
+        name: "Pandas",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
       },
     ],
   },
@@ -236,7 +486,11 @@ function ProjectCard({ item }: { item: Project }) {
   const link = item.liveDemo || "#";
   const isGithub = link.includes("github.com");
   const isVercel = link.includes("vercel.app") || link.includes("vercel.com");
-  const buttonLabel = isGithub ? "Source Code" : isVercel ? "Live Demo" : "Live Demo";
+  const buttonLabel = isGithub
+    ? "Source Code"
+    : isVercel
+      ? "Live Demo"
+      : "Live Demo";
 
   const handleDetailClick = () => {
     if (item.detailId) {
@@ -268,7 +522,8 @@ function ProjectCard({ item }: { item: Project }) {
                   className="rounded bg-white p-1 shadow ring-1 ring-black/10"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/devicon/devicon-original.svg';
+                    target.src =
+                      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/devicon/devicon-original.svg";
                   }}
                 />
               ))}
@@ -277,21 +532,67 @@ function ProjectCard({ item }: { item: Project }) {
         </div>
 
         <div className="mt-4 flex flex-1 flex-col gap-3">
-          <h3 className="text-pretty text-lg font-semibold leading-tight md:text-xl">{item.title}</h3>
-          <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+          <h3 className="text-pretty text-lg font-semibold leading-tight md:text-xl">
+            {item.title}
+          </h3>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            {item.desc}
+          </p>
 
           <div className="mt-auto flex gap-2">
-            {item.category === "data" && item.detailId ? (
-              <Button 
-                size="lg" 
+            {item.category === "mobile" ? (
+              <>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download App"
+                  className="flex-1"
+                >
+                  <Button
+                    size="lg"
+                    className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer w-full"
+                  >
+                    Download App <Download size={16} />
+                  </Button>
+                </a>
+                {item.sourceCodeUrl && (
+                  <a
+                    href={item.sourceCodeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Source Code"
+                    className="flex-1"
+                  >
+                    <Button
+                      size="lg"
+                      className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer w-full"
+                    >
+                      Source Code <SquareArrowOutUpRight />
+                    </Button>
+                  </a>
+                )}
+              </>
+            ) : item.category === "data" && item.detailId ? (
+              <Button
+                size="lg"
                 className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer flex-1"
                 onClick={handleDetailClick}
               >
                 Detail <Eye size={16} />
               </Button>
             ) : (
-              <a href={link} target="_blank" rel="noopener noreferrer" aria-label={buttonLabel} className="flex-1">
-                <Button size="lg" className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer w-full">
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={buttonLabel}
+                className="flex-1"
+              >
+                <Button
+                  size="lg"
+                  className="rounded-xl bg-white border border-border text-black hover:bg-gray-100 cursor-pointer w-full"
+                >
                   {buttonLabel} <SquareArrowOutUpRight />
                 </Button>
               </a>
@@ -304,7 +605,7 @@ function ProjectCard({ item }: { item: Project }) {
 }
 
 export default function ProjectsSection() {
-  const [activeTab, setActiveTab] = useState<"web" | "data">("web");
+  const [activeTab, setActiveTab] = useState<"web" | "data" | "mobile">("web");
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [progress, setProgress] = useState(0);
   const autoplayRef = useRef<number | null>(null);
@@ -363,12 +664,20 @@ export default function ProjectsSection() {
   }, [api, isPaused]);
 
   return (
-    <section aria-labelledby="projects-title" className="bg-background text-foreground overflow-x-hidden">
+    <section
+      aria-labelledby="projects-title"
+      className="bg-background text-foreground overflow-x-hidden"
+    >
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-10">
         <div className="mb-8 flex items-start justify-between gap-6">
           <div className="max-w-2xl">
-            <h2 id="projects-title" className="text-pretty text-3xl font-semibold leading-tight md:text-5xl">
-              <span className="text-[#32fb00]">Ngoding,</span> <span className="text-[#32fb00]">ngulik,</span> jadi deh project-project keren ini 😁
+            <h2
+              id="projects-title"
+              className="text-pretty text-3xl font-semibold leading-tight md:text-5xl"
+            >
+              <span className="text-[#32fb00]">Ngoding,</span>{" "}
+              <span className="text-[#32fb00]">ngulik,</span> jadi deh
+              project-project keren ini 😁
             </h2>
           </div>
         </div>
@@ -379,7 +688,9 @@ export default function ProjectsSection() {
             onClick={() => setActiveTab("web")}
             className={cn(
               "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
-              activeTab === "web" ? "text-black" : "text-muted-foreground hover:text-foreground"
+              activeTab === "web"
+                ? "text-black"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             Web Developer
@@ -388,10 +699,26 @@ export default function ProjectsSection() {
             )}
           </button>
           <button
+            onClick={() => setActiveTab("mobile")}
+            className={cn(
+              "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
+              activeTab === "mobile"
+                ? "text-black"
+                : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            Mobile
+            {activeTab === "mobile" && (
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
+            )}
+          </button>
+          <button
             onClick={() => setActiveTab("data")}
             className={cn(
               "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
-              activeTab === "data" ? "text-black" : "text-muted-foreground hover:text-foreground"
+              activeTab === "data"
+                ? "text-black"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             Data Analyst
@@ -409,10 +736,17 @@ export default function ProjectsSection() {
         >
           {filteredProjects.length > 0 ? (
             <>
-              <Carousel setApi={setApi} opts={{ align: "start", loop: false }} className="w-full">
+              <Carousel
+                setApi={setApi}
+                opts={{ align: "start", loop: false }}
+                className="w-full"
+              >
                 <CarouselContent>
                   {filteredProjects.map((p) => (
-                    <CarouselItem key={p.id} className="md:basis-1/2 lg:basis-1/3">
+                    <CarouselItem
+                      key={p.id}
+                      className="md:basis-1/2 lg:basis-1/3"
+                    >
                       <ProjectCard item={p} />
                     </CarouselItem>
                   ))}
@@ -425,7 +759,9 @@ export default function ProjectsSection() {
               <div className="mt-6">
                 <div className="h-1 w-full rounded-full bg-muted">
                   <div
-                    className={cn("h-1 rounded-full bg-black transition-[width] duration-300")}
+                    className={cn(
+                      "h-1 rounded-full bg-black transition-[width] duration-300",
+                    )}
                     style={{ width: `${Math.round(progress * 100)}%` }}
                   />
                 </div>
@@ -438,17 +774,18 @@ export default function ProjectsSection() {
                 Oops, saya belum ada project ini nih
               </h3>
               <p className="text-muted-foreground max-w-md">
-                {activeTab === "data" 
-                  ? "Project Data Science sedang dalam tahap pengembangan. Stay tuned!" 
-                  : "Project Web Development akan segera hadir. Nantikan ya!"
-                }
+                {activeTab === "data"
+                  ? "Project Data Science sedang dalam tahap pengembangan. Stay tuned!"
+                  : "Project Web Development akan segera hadir. Nantikan ya!"}
               </p>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="mt-6"
-                onClick={() => setActiveTab(activeTab === "data" ? "web" : "data")}
+                onClick={() =>
+                  setActiveTab(activeTab === "data" ? "web" : "data")
+                }
               >
-                Lihat {activeTab === "data" ? "Web Projects" : "Data Projects"} 
+                Lihat {activeTab === "data" ? "Web Projects" : "Data Projects"}
               </Button>
             </div>
           )}
