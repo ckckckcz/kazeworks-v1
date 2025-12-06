@@ -25,6 +25,7 @@ import AIDA from "@/app/project/aida.png";
 import Mbgo from "@/app/project/mbgo.png";
 import Pilar from "@/app/project/pilar.png";
 import PilarMobile from "@/app/project/pilar-mobile.png"
+import MydjMobile from "@/app/project/mydj.png"
 import Thumbnail_1 from "@/app/project/data/thumbnail1.png";
 import Thumbnail_2 from "@/app/project/data/thumbnail2.png";
 import { SquareArrowOutUpRight, Eye, Download } from "lucide-react";
@@ -152,6 +153,29 @@ const projects: Project[] = [
       {
         name: "Supabase",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+      },
+      {
+        name: "FastAPI",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+    ],
+  },
+  {
+    id: "MyDj Mobile",
+    title: "MyDJ (My Daily Journal)",
+    desc: "MyDj merupakan solusi administrasi digital bagi tenaga pendidik untuk mencatat agenda kegiatan belajar mengajar (KBM) secara efisien. Aplikasi ini menggantikan buku jurnal fisik, memungkinkan guru merekam materi yang diajarkan,",
+    image: MydjMobile,
+    liveDemo: "https://github.com/ckckckcz/MyDJ",
+    sourceCodeUrl: "https://github.com/ckckckcz/MyDJ",
+    category: "mobile",
+    techStack: [
+      {
+        name: "Flutter",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+      {
+        name: "Dart",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
       },
       {
         name: "FastAPI",
@@ -693,7 +717,7 @@ export default function ProjectsSection() {
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
-            Web Developer
+            Web
             {activeTab === "web" && (
               <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
             )}
