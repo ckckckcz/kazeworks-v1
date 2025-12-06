@@ -24,7 +24,7 @@ import KAI from "@/app/project/kai.png";
 import AIDA from "@/app/project/aida.png";
 import Mbgo from "@/app/project/mbgo.png";
 import Pilar from "@/app/project/pilar.png";
-import PilarMobile from "@/app/project/pilar-mobile.png";
+import PilarMobile from "@/app/project/pilar-mobile.png"
 import Thumbnail_1 from "@/app/project/data/thumbnail1.png";
 import Thumbnail_2 from "@/app/project/data/thumbnail2.png";
 import { SquareArrowOutUpRight, Eye, Download } from "lucide-react";
