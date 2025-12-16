@@ -1,4 +1,3 @@
-// components/TechStack.tsx
 "use client"
 
 const techIcons = [

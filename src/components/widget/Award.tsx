@@ -10,12 +10,23 @@ import Compsphere from "@/app/assets/awards/compsphere.png";
 import Compfest1 from "@/app/assets/awards/team/mechaminds-1.jpg";
 import Compfest2 from "@/app/assets/awards/team/mechaminds-2.jpg";
 import Mechaminds from "@/app/assets/awards/team/mechaminds-3.jpg";
+import SmkSuhat from "@/app/assets/awards/team/smk_suhat.jpg";
 import Olivia2 from "@/app/assets/awards/team/mechaminds-4.jpg";
 import Bebelac from "@/app/assets/awards/team/bebelac.jpg";
 import Ahlanwahsahlan from "@/app/assets/awards/team/compshere.jpg";
+import Komdigi from "@/app/assets/awards/komdigi.png";
 import Image from "next/image";
 
 const awards = [
+  {
+    title: "Top 10 Exploraition Hackathon at Garuda Spark by Komdigi",
+    issuer: "Komdigi",
+    date: "Dec 2025",
+    related: "Politeknik Negeri Malang",
+    team: "SMK Suhat Guy",
+    logo: Komdigi.src,
+    bgImage: SmkSuhat.src,
+  },
   {
     title:
       "Finalist Hacksphere Hackathon Compsphere 2025 at President University",

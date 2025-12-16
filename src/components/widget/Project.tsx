@@ -24,8 +24,9 @@ import KAI from "@/app/project/kai.png";
 import AIDA from "@/app/project/aida.png";
 import Mbgo from "@/app/project/mbgo.png";
 import Pilar from "@/app/project/pilar.png";
-import PilarMobile from "@/app/project/pilar-mobile.png"
-import MydjMobile from "@/app/project/mydj.png"
+import PilarMobile from "@/app/project/pilar-mobile.png";
+import MydjMobile from "@/app/project/mydj.png";
+import Tuju from "@/app/project/tuju.png";
 import Thumbnail_1 from "@/app/project/data/thumbnail1.png";
 import Thumbnail_2 from "@/app/project/data/thumbnail2.png";
 import { SquareArrowOutUpRight, Eye, Download } from "lucide-react";
@@ -284,6 +285,28 @@ const projects: Project[] = [
       {
         name: "Midtrans",
         icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
+      },
+    ],
+  },
+  {
+    id: "tuju",
+    title: "Tuju",
+    desc: "Platform ekosistem pre-career yang menjembatani gap antara dunia pendidikan dan industri melalui real-world case studies. Tuju memandu dalon mahasiswa menemukan prodi ideal, memvalidasi skill melalui tantangan nyata perushaan, dan menyediakan akses eksklusif bagi industri.",
+    image: Tuju,
+    liveDemo: "https://tuju-web.vercel.app/onboarding",
+    category: "web",
+    techStack: [
+      {
+        name: "Next",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Typescript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Tailwind",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
       },
     ],
   },
