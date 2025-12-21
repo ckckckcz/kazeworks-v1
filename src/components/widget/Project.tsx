@@ -12,532 +12,18 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import SkillQuest from "@/app/project/skillquest.png";
-import Cendekia from "@/app/project/cendekia.png";
-import Katalis from "@/app/project/katalis.png";
-import WarisanKita from "@/app/project/warisankita.png";
-import Sora from "@/app/project/sora.png";
-import Grow from "@/app/project/grow.png";
-import Tandur from "@/app/project/tandur.png";
-import Pulse from "@/app/project/pulse.png";
-import KAI from "@/app/project/kai.png";
-import AIDA from "@/app/project/aida.png";
-import Mbgo from "@/app/project/mbgo.png";
-import Pilar from "@/app/project/pilar.png";
-import PilarMobile from "@/app/project/pilar-mobile.png";
-import MydjMobile from "@/app/project/mydj.png";
-import Tuju from "@/app/project/tuju.png";
-import Thumbnail_1 from "@/app/project/data/thumbnail1.png";
-import Thumbnail_2 from "@/app/project/data/thumbnail2.png";
 import { SquareArrowOutUpRight, Eye, Download } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { PortfolioProject } from "@/types/portfolio";
+import { allProjects, getProjectsByCategory } from "@/data/portfolio";
 
-type Project = {
-  id: string;
-  title: string;
-  desc: string;
-  image: StaticImageData | string;
-  liveDemo?: string;
-  techStack?: { name: string; icon: string }[];
-  category: "web" | "data" | "mobile";
-  detailId?: string;
-  downloadUrl?: string;
-  sourceCodeUrl?: string;
-};
-
-const projects: Project[] = [
-  {
-    id: "AIDA",
-    title: "AIDA (Advertisement Data Analytics) ",
-    desc: "Smart billboard berbasis AI adalah papan iklan digital yang mendeteksi dan menghitung kendaraan lewat menggunakan kamera dan AI, lalu menampilkan data tayangan secara real-time di dashboard web untuk memantau efektivitas iklan.",
-    image: AIDA,
-    liveDemo: "https://dev.dashboard.theaida.id/",
-    category: "web",
-    techStack: [
-      {
-        name: "Express",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-      },
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "Vite",
-        icon: "https://img.icons8.com/?size=100&id=dJjTWMogzFzg&format=png&color=000000",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Mysql",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-      },
-    ],
-  },
-  {
-    id: "SkillQuest",
-    title: "Skill Quest",
-    desc: "SkillQuest employs artificial intelligence to power personalized learning. The intelligence to customize learning materials to the unique requirements of each user.  The system monitors the progress of each user and provides relevant content. This is consistent with their learning objectives and skill level.",
-    image: SkillQuest,
-    liveDemo: "https://github.com/ckckckcz/SkillQuest",
-    category: "web",
-    techStack: [
-      {
-        name: "Laravel",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Mysql",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-      },
-      {
-        name: "Midtrans",
-        icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
-      },
-    ],
-  },
-  {
-    id: "Pilar Mobile - Flutter",
-    title: "Pilar App",
-    desc: "PILAR memanfaatkan model pembelajaran mesin berpresisi tinggi untuk mendeteksi serta mengklasifikasikan jenis sampah secara otomatis. Pengguna hanya perlu mengarahkan kamera, dan sistem akan memproses citra tersebut secara real-time untuk menentukan kategori yang tepat.",
-    image: PilarMobile,
-    liveDemo: "https://github.com/ckckckcz/trash-detection",
-    sourceCodeUrl: "https://github.com/ckckckcz/trash-detection",
-    category: "mobile",
-    techStack: [
-      {
-        name: "Flutter",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-      },
-      {
-        name: "Dart",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-      },
-      {
-        name: "Supabase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-      },
-      {
-        name: "FastAPI",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Pilar Mobile - React Native",
-    title: "Pilar Mobile",
-    desc: "PILAR memanfaatkan model pembelajaran mesin berpresisi tinggi untuk mendeteksi serta mengklasifikasikan jenis sampah secara otomatis. Pengguna hanya perlu mengarahkan kamera, dan sistem akan memproses citra tersebut secara real-time untuk menentukan kategori yang tepat.",
-    image: PilarMobile,
-    liveDemo: "https://github.com/ckckckcz/PBL-Mobile",
-    sourceCodeUrl: "https://github.com/ckckckcz/PBL-Mobile",
-    category: "mobile",
-    techStack: [
-      {
-        name: "React Native",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Supabase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-      },
-      {
-        name: "FastAPI",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
-      },
-    ],
-  },
-  {
-    id: "MyDj Mobile",
-    title: "MyDJ (My Daily Journal)",
-    desc: "MyDj merupakan solusi administrasi digital bagi tenaga pendidik untuk mencatat agenda kegiatan belajar mengajar (KBM) secara efisien. Aplikasi ini menggantikan buku jurnal fisik, memungkinkan guru merekam materi yang diajarkan,",
-    image: MydjMobile,
-    liveDemo: "https://github.com/ckckckcz/MyDJ",
-    sourceCodeUrl: "https://github.com/ckckckcz/MyDJ",
-    category: "mobile",
-    techStack: [
-      {
-        name: "Flutter",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-      },
-      {
-        name: "Dart",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-      },
-      {
-        name: "FastAPI",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Pilar",
-    title: "Pilar",
-    desc: "PILAR memanfaatkan model pembelajaran mesin berpresisi tinggi untuk mendeteksi serta mengklasifikasikan jenis sampah secara otomatis. Pengguna hanya perlu mengarahkan kamera, dan sistem akan memproses citra tersebut secara real-time untuk menentukan kategori yang tepat",
-    image: Pilar,
-    liveDemo: "https://pilars.vercel.app",
-    category: "web",
-    techStack: [
-      {
-        name: "NextJS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Mbgo",
-    title: "Mbgo",
-    desc: "Program MBGo(Makan Bergizi Go!) merupakan solusi digital terintegrasi yang sangat mendesak untuk diimplementasikan guna menyelamatkan pelaksanaan program Makan Bergizi Gratis(MBG).Urgensi solusi ini didorong oleh fakta kegagalan sistemik MBG saat ini..",
-    image: Mbgo,
-    liveDemo: "https://mbgo.vercel.app/",
-    category: "web",
-    techStack: [
-      {
-        name: "NextJS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Supabase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Grow+",
-    title: "Grow +",
-    desc: "Website application Stunting Nutrition Planner (SNP) yang dirancang sebagai solusi inovatif untuk memutus mata rantai stunting di wilayah non-Jawa melalui pendekatan personalisasi gizi berbasis kondisi ekonomi dan geografis pengguna.",
-    image: Grow,
-    liveDemo: "https://github.com/ckckckcz/growplus",
-    category: "web",
-    techStack: [
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Laravel",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Mysql",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-      },
-    ],
-  },
-  {
-    id: "PulseProtect",
-    title: "Pulse Protect",
-    desc: "Platform inisiatif untuk membantu masyarakat Indonesia memastikan keaslian obat melalui verifikasi cepat berbasis data BPOM. Kami mengajak publik berkolaborasi mencegah peredaran obat ilegal, sekaligus menghadirkan pengalaman yang sederhana, akurat, dan dapat dipercaya.",
-    image: Pulse,
-    liveDemo: "https://pulseprotect.vercel.app/",
-    category: "web",
-    techStack: [
-      {
-        name: "Next",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Supabase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-      },
-      {
-        name: "PostgreSQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-      },
-      {
-        name: "Midtrans",
-        icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
-      },
-    ],
-  },
-  {
-    id: "tuju",
-    title: "Tuju",
-    desc: "Platform ekosistem pre-career yang menjembatani gap antara dunia pendidikan dan industri melalui real-world case studies. Tuju memandu dalon mahasiswa menemukan prodi ideal, memvalidasi skill melalui tantangan nyata perushaan, dan menyediakan akses eksklusif bagi industri.",
-    image: Tuju,
-    liveDemo: "https://tuju-web.vercel.app/onboarding",
-    category: "web",
-    techStack: [
-      {
-        name: "Next",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-    ],
-  },
-  {
-    id: "KAI Connect",
-    title: "KAI Connect",
-    desc: "platform berbasis web yang dirancang untuk mendukung digitalisasi layanan Kereta Api Indonesia (KAI) dengan menghadirkan pengalaman perjalanan yang lebih efisien, modern, dan ramah pengguna. Sistem ini memadukan teknologi OCR, Artificial Intelligence, dan visualisasi peta.",
-    image: KAI,
-    liveDemo: "https://github.com/ckckckcz/compshere-ahlanwahsahlan",
-    category: "web",
-    techStack: [
-      {
-        name: "Next",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Supabase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-      },
-      {
-        name: "PostgreSQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-      },
-      {
-        name: "Python",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-      },
-      {
-        name: "Midtrans",
-        icon: "https://avatars.githubusercontent.com/u/17001512?v=4",
-      },
-    ],
-  },
-  {
-    id: "Tandur",
-    title: "Tandur",
-    desc: "Sistem berbasis web yang dirancang untuk mendukung pengelolaan data lahan pertanian secara efisien. Sistem ini memungkinkan pengguna untuk mencatat, memantau, dan menganalisis data lahan di Kabupaten Malang dengan memanfaatkan teknologi GIS.",
-    image: Tandur,
-    liveDemo: "https://tandur.vercel.app/",
-    category: "web",
-    techStack: [
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Astro",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "Python",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Warisan Kita",
-    title: "Warisan Kita",
-    desc: "Platform inovatif yang dirancang untuk mendigitalkan, melestarikan, dan mempromosikan seni serta budaya tradisional, dengan fokus kuat pada upaya menjaga warisan budaya di tengah arus globalisasi yang kian berkembang.",
-    image: WarisanKita,
-    liveDemo: "https://warisankita.vercel.app/",
-    category: "web",
-    techStack: [
-      {
-        name: "Astro",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Javascript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-    ],
-  },
-  {
-    id: "SoraWeb",
-    title: "Sora Web",
-    desc: "Soraweb adalah tim layanan yang menyediakan jasa pengembangan website dan desain digital. Kami tidak hanya sekadar membuat situs web, tapi berperan sebagai mitra strategis yang membantu klien membangun identitas online yang kuat dan berkualitas tinggi.",
-    image: Sora,
-    liveDemo: "https://soraofficial.vercel.app/",
-    category: "web",
-    techStack: [
-      {
-        name: "Astro",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
-      },
-      {
-        name: "Typescript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Cendekia UM",
-    title: "Cendekia -  Universitas Negeri Malang",
-    desc: "Tujuan dari pembuatan website Cendekia ini adalah agar memudahkan mahasiswa untuk mengakses materi di mana saja dan kapan saja tanpa terbatas oleh waktu, membuat proses belajar lebih menarik karena adanya ilustrasi dan video pembelajaran, dan meningkatkan kemampuan kolaboratif mahasiswa.",
-    image: Cendekia,
-    liveDemo: "https://cendekiaum.vercel.app/",
-    category: "web",
-    techStack: [
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "Javascript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-    ],
-  },
-  {
-    id: "Katalis JTI",
-    title: "Katalis JTI",
-    desc: "pengembangan website yang bertujuan untuk mendokumentasikan, mempublikasikan, dan mengelola data prestasi mahasiswa di kampus. Website ini diharapkan menjadi pusat informasi terintegrasi yang memudahkan mahasiswa, dosen, dan pihak kampus dalam melacak pencapaian akademis, dan kompetisi.",
-    image: Katalis,
-    liveDemo: "https://github.com/ckckckcz/Katalis-JTI",
-    category: "web",
-    techStack: [
-      {
-        name: "PHP",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-      },
-      {
-        name: "CSS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-      },
-      {
-        name: "Javascript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "TSQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-      },
-      {
-        name: "Mysql",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-      },
-    ],
-  },
-  {
-    id: "superstore-analysis",
-    title: "Analisis Penjualan & Keuntungan Superstore",
-    desc: "Analisis mendalam terhadap data penjualan retail menggunakan Python dan Excel untuk memahami performa bisnis, tren penjualan, dan optimasi keuntungan berdasarkan kategori produk dan wilayah.",
-    image: Thumbnail_1,
-    category: "data",
-    detailId: "superstore-analysis",
-    techStack: [
-      {
-        name: "Python",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-      },
-      {
-        name: "Jupyter",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
-      },
-      {
-        name: "Excel",
-        icon: "https://cdn.simpleicons.org/microsoftexcel/217346",
-      },
-    ],
-  },
-  {
-    id: "customer-spending-analysis",
-    title: "Analisis Pola Pengeluaran Pelanggan",
-    desc: "Analisis perilaku pelanggan melalui data pengeluaran berdasarkan faktor demografis seperti usia dan total belanja menggunakan Python dan Google Colab untuk memahami tren konsumsi dan pola pengeluaran.",
-    image: Thumbnail_2,
-    category: "data",
-    detailId: "customer-spending-analysis",
-    techStack: [
-      {
-        name: "Python",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-      },
-      {
-        name: "Excel",
-        icon: "https://cdn.simpleicons.org/microsoftexcel/217346",
-      },
-      {
-        name: "Jupyter",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
-      },
-      {
-        name: "Pandas",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
-      },
-    ],
-  },
-];
-
-function ProjectCard({ item }: { item: Project }) {
+function ProjectCard({ item }: { item: PortfolioProject }) {
   const router = useRouter();
   const link = item.liveDemo || "#";
   const isGithub = link.includes("github.com");
   const isVercel = link.includes("vercel.app") || link.includes("vercel.com");
-  const buttonLabel = isGithub
-    ? "Source Code"
-    : isVercel
-      ? "Live Demo"
-      : "Live Demo";
+  const buttonLabel = isGithub ? "Source Code" : "Live Demo";
 
   const handleDetailClick = () => {
     if (item.detailId) {
@@ -548,6 +34,7 @@ function ProjectCard({ item }: { item: Project }) {
   return (
     <Card className="h-full overflow-hidden border-border bg-card/60 max-w-7xl px-4 py-4">
       <div className="flex h-full flex-col">
+        {/* Project Image */}
         <div className="relative aspect-[16/9] rounded-lg border border-border overflow-hidden">
           <Image
             src={item.image || "/placeholder.svg"}
@@ -556,14 +43,16 @@ function ProjectCard({ item }: { item: Project }) {
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover"
           />
+
+          {/* Tech Stack Icons Overlay */}
           {!!item.techStack?.length && (
             <div className="absolute bottom-2 left-2 flex items-center gap-2">
-              {item.techStack.slice(0, 6).map((s) => (
+              {item.techStack.slice(0, 6).map((tech) => (
                 <Image
-                  key={s.name}
-                  src={s.icon}
-                  alt={s.name}
-                  title={s.name}
+                  key={tech.name}
+                  src={tech.icon}
+                  alt={tech.name}
+                  title={tech.name}
                   width={32}
                   height={32}
                   className="rounded bg-white p-1 shadow ring-1 ring-black/10"
@@ -578,6 +67,7 @@ function ProjectCard({ item }: { item: Project }) {
           )}
         </div>
 
+        {/* Project Info */}
         <div className="mt-4 flex flex-1 flex-col gap-3">
           <h3 className="text-pretty text-lg font-semibold leading-tight md:text-xl">
             {item.title}
@@ -586,6 +76,7 @@ function ProjectCard({ item }: { item: Project }) {
             {item.desc}
           </p>
 
+          {/* Action Buttons */}
           <div className="mt-auto flex gap-2">
             {item.category === "mobile" ? (
               <>
@@ -651,6 +142,10 @@ function ProjectCard({ item }: { item: Project }) {
   );
 }
 
+/**
+ * ProjectsSection Component
+ * Main section displaying projects with category filtering and carousel
+ */
 export default function ProjectsSection() {
   const [activeTab, setActiveTab] = useState<"web" | "data" | "mobile">("web");
   const [api, setApi] = useState<CarouselApi | null>(null);
@@ -658,55 +153,62 @@ export default function ProjectsSection() {
   const autoplayRef = useRef<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  const filteredProjects = projects.filter((p) => p.category === activeTab);
+  const filteredProjects = getProjectsByCategory(activeTab);
 
+  // Update carousel progress
   useEffect(() => {
     if (!api) return;
-    const update = () => {
+
+    const updateProgress = () => {
       const snaps = api.scrollSnapList().length || 1;
       const selected = api.selectedScrollSnap() + 1;
       setProgress(selected / snaps);
     };
-    update();
-    api.on("select", update);
-    api.on("reInit", update);
+
+    updateProgress();
+    api.on("select", updateProgress);
+    api.on("reInit", updateProgress);
+
     return () => {
-      api.off("select", update);
-      api.off("reInit", update);
+      api.off("select", updateProgress);
+      api.off("reInit", updateProgress);
     };
   }, [api]);
 
+  // Setup autoplay with pause on hover
   useEffect(() => {
     if (!api) return;
 
-    const start = () => {
+    const startAutoplay = () => {
       if (autoplayRef.current) return;
       autoplayRef.current = window.setInterval(() => {
         if (isPaused) return;
         if (api.canScrollNext()) api.scrollNext();
         else api.scrollTo(0);
-      }, 10000000000000000);
+      }, 5000);
     };
 
-    const stop = () => {
+    const stopAutoplay = () => {
       if (autoplayRef.current) {
         clearInterval(autoplayRef.current);
         autoplayRef.current = null;
       }
     };
 
-    const onVisibility = () => (document.hidden ? stop() : start());
+    const handleVisibilityChange = () => {
+      document.hidden ? stopAutoplay() : startAutoplay();
+    };
 
-    start();
-    api.on("pointerDown", stop);
-    api.on("pointerUp", start);
-    document.addEventListener("visibilitychange", onVisibility);
+    startAutoplay();
+    api.on("pointerDown", stopAutoplay);
+    api.on("pointerUp", startAutoplay);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      stop();
-      api.off("pointerDown", stop);
-      api.off("pointerUp", start);
-      document.removeEventListener("visibilitychange", onVisibility);
+      stopAutoplay();
+      api.off("pointerDown", stopAutoplay);
+      api.off("pointerUp", startAutoplay);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [api, isPaused]);
 
@@ -716,6 +218,7 @@ export default function ProjectsSection() {
       className="bg-background text-foreground overflow-x-hidden"
     >
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-10">
+        {/* Section Header */}
         <div className="mb-8 flex items-start justify-between gap-6">
           <div className="max-w-2xl">
             <h2
@@ -729,52 +232,26 @@ export default function ProjectsSection() {
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* Category Tabs */}
         <div className="mb-8 flex gap-2 border-b border-border">
-          <button
+          <TabButton
+            label="Web"
+            active={activeTab === "web"}
             onClick={() => setActiveTab("web")}
-            className={cn(
-              "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
-              activeTab === "web"
-                ? "text-black"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            Web
-            {activeTab === "web" && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
-            )}
-          </button>
-          <button
+          />
+          <TabButton
+            label="Mobile"
+            active={activeTab === "mobile"}
             onClick={() => setActiveTab("mobile")}
-            className={cn(
-              "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
-              activeTab === "mobile"
-                ? "text-black"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            Mobile
-            {activeTab === "mobile" && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
-            )}
-          </button>
-          <button
+          />
+          <TabButton
+            label="Data Analyst"
+            active={activeTab === "data"}
             onClick={() => setActiveTab("data")}
-            className={cn(
-              "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
-              activeTab === "data"
-                ? "text-black"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            Data Analyst
-            {activeTab === "data" && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
-            )}
-          </button>
+          />
         </div>
 
+        {/* Projects Carousel */}
         <div
           className="relative overflow-hidden transition-opacity duration-500"
           onMouseEnter={() => setIsPaused(true)}
@@ -789,12 +266,12 @@ export default function ProjectsSection() {
                 className="w-full"
               >
                 <CarouselContent>
-                  {filteredProjects.map((p) => (
+                  {filteredProjects.map((project) => (
                     <CarouselItem
-                      key={p.id}
+                      key={project.id}
                       className="md:basis-1/2 lg:basis-1/3"
                     >
-                      <ProjectCard item={p} />
+                      <ProjectCard item={project} />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -803,6 +280,7 @@ export default function ProjectsSection() {
                 <CarouselNext className="hidden md:flex" />
               </Carousel>
 
+              {/* Progress Bar */}
               <div className="mt-6">
                 <div className="h-1 w-full rounded-full bg-muted">
                   <div
@@ -815,29 +293,75 @@ export default function ProjectsSection() {
               </div>
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center py-20 text-center">
-              <div className="text-6xl mb-4">🚧</div>
-              <h3 className="text-2xl font-semibold text-muted-foreground mb-2">
-                Oops, saya belum ada project ini nih
-              </h3>
-              <p className="text-muted-foreground max-w-md">
-                {activeTab === "data"
-                  ? "Project Data Science sedang dalam tahap pengembangan. Stay tuned!"
-                  : "Project Web Development akan segera hadir. Nantikan ya!"}
-              </p>
-              <Button
-                variant="outline"
-                className="mt-6"
-                onClick={() =>
-                  setActiveTab(activeTab === "data" ? "web" : "data")
-                }
-              >
-                Lihat {activeTab === "data" ? "Web Projects" : "Data Projects"}
-              </Button>
-            </div>
+            <EmptyState activeTab={activeTab} onTabChange={setActiveTab} />
           )}
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * TabButton Component
+ * Reusable tab button with active state styling
+ */
+function TabButton({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "relative px-6 py-3 text-sm font-medium transition-colors duration-300",
+        active ? "text-black" : "text-muted-foreground hover:text-foreground",
+      )}
+    >
+      {label}
+      {active && (
+        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transition-all duration-300" />
+      )}
+    </button>
+  );
+}
+
+/**
+ * EmptyState Component
+ * Displays message when no projects exist for selected category
+ */
+function EmptyState({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: "web" | "data" | "mobile";
+  onTabChange: (tab: "web" | "data" | "mobile") => void;
+}) {
+  const isDataTab = activeTab === "data";
+  const alternateTab = isDataTab ? "web" : "data";
+  const emptyMessage = isDataTab
+    ? "Project Data Science sedang dalam tahap pengembangan. Stay tuned!"
+    : "Project Web Development akan segera hadir. Nantikan ya!";
+  const alternateLabel = isDataTab ? "Web Projects" : "Data Projects";
+
+  return (
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <div className="text-6xl mb-4">🚧</div>
+      <h3 className="text-2xl font-semibold text-muted-foreground mb-2">
+        Oops, saya belum ada project ini nih
+      </h3>
+      <p className="text-muted-foreground max-w-md">{emptyMessage}</p>
+      <Button
+        variant="outline"
+        className="mt-6"
+        onClick={() => onTabChange(alternateTab)}
+      >
+        Lihat {alternateLabel}
+      </Button>
+    </div>
   );
 }
