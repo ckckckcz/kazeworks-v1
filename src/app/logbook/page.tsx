@@ -37,7 +37,7 @@ export default async function LogbookPage() {
             Internship Period:
           </span>
           <span className="text-gray-900 font-semibold bg-gray-100/80 px-3 py-1 rounded-lg">
-            January 2026 – Present
+            June 2026 – December 2026
           </span>
         </div>
       </section>

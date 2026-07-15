@@ -47,20 +47,9 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({ task }) => {
           <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-emerald-700 transition-colors duration-200 mb-1.5">
             {task.title}
           </h3>
-          {task.description && (
-            <p className="text-sm text-gray-500 leading-relaxed font-medium">{task.description}</p>
-          )}
         </div>
 
         <div className="space-y-3 pt-3 border-t border-gray-100/60">
-          {task.technologies?.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
-              {task.technologies.map(tech => (
-                <span key={tech} className="text-[10px] font-bold text-gray-500 bg-gray-100 hover:bg-gray-200/80 hover:text-gray-800 px-2 py-0.5 rounded-md transition-colors select-none">{tech}</span>
-              ))}
-            </div>
-          )}
-
           {task.assignee && (
             <div className="flex items-center gap-1 text-xs text-gray-400 font-medium">
               <User className="w-3.5 h-3.5" />
